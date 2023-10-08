@@ -6,5 +6,5 @@ export type flightDataType = {
   arrival: string;
   duration: string;
   price: number;
-  seats: Seat[];
+  seats: [];
 };

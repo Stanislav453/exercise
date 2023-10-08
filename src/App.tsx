@@ -1,12 +1,14 @@
-import React from 'react';
-import { Header } from './component/Header/Header';
-import { Ticket } from './component/Ticket/Ticket';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from './Page/Home';
+import { OrderTicket } from './Page/OrderTicket';
 
 export const App = () => {
   return (
     <>
-      <Header />
-      <Ticket />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/order-ticket' element={<OrderTicket />} />
+      </Routes>
     </>
   );
 };

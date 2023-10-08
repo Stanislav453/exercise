@@ -14,6 +14,7 @@
       { "id": 4, "number": "B2", "available": true }
     ]
   },
+
   {
     "id": 2,
     "from": "London",
@@ -59,7 +60,7 @@
       { "id": 4, "number": "B2", "available": true }
     ]
   },
-  {
+{
     "id": 5,
     "from": "Barcelona",
     "to": "Berlin",

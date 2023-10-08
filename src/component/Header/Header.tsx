@@ -1,5 +1,5 @@
 import img from './img/header.webp';
-import { Filter } from '../Filter';
+import { Filter } from '../Filter/Filter';
 import { Container } from '@mui/material';
 export const Header = () => {
   return (

@@ -32,7 +32,6 @@ export const filterSlice = createSlice({
       return {
         ...state,
         filterData: action.payload.length > 0 ? filterData : [...state.data],
-  
       };
     },
     searchByDeparture: (state, action) => {
@@ -57,9 +56,20 @@ export const filterSlice = createSlice({
         filterData: action.payload.length > 0 ? filterData : [...state.data],
       };
     },
+    persconCount: (state, action) => {
+      const filterData = state.filterData.filter((data) => {
+        return (
+       data.seats.filter((item) => item.available).length >= action.payload
+        );
+      });
+      return {
+        ...state,
+        filterData: action.payload > 0 ? filterData : [...state.data],
+      };
+    },
   },
 });
 
-export const { searchByName, searchByTo } = filterSlice.actions;
+export const { searchByName, searchByTo, persconCount } = filterSlice.actions;
 
 export default filterSlice.reducer;

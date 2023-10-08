@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import { flightDataType } from '../../type';
 import { Button, Stack, Typography } from '@mui/material';
@@ -6,8 +6,12 @@ import { our_flights } from '../../stringVariables';
 import img from './img/fly-img.webp';
 import Box from '@mui/material/Box';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import { addOrderTicketData } from '../../Redux/slices/orderSlice';
+import { Link } from 'react-router-dom';
 
 export const Ticket = () => {
+  const dispatch = useDispatch();
+
   const filteredData = useSelector(
     (state: flightDataType) => state.flyTicketFilter.filterData
   );
@@ -22,10 +26,12 @@ export const Ticket = () => {
         {our_flights}
       </Typography>
       {filteredData.length === 0 ? (
-        <Typography variant='h4' color={'error'} >No flights available</Typography>
+        <Typography variant='h4' color={'error'}>
+          No flights available
+        </Typography>
       ) : (
         filteredData.map((item: flightDataType, key: number) => {
-          const { from, to, departure, arrival, duration, price } = item;
+          const { from, to, departure, arrival, duration, price, seats } = item;
           return (
             <Box component='div' key={key} sx={{ pt: 2 }}>
               <Stack
@@ -59,9 +65,32 @@ export const Ticket = () => {
                     variant='h6'
                     sx={{ textAlign: 'center' }}
                   >{`$${price}`}</Typography>
-                  <Button variant='contained' color='success'>
-                    select
-                  </Button>
+                  <Link to='/order-ticket'>
+                    <Button
+                      type='button'
+                      onClick={() =>
+                        dispatch(
+                          addOrderTicketData({
+                            from,
+                            to,
+                            departure,
+                            arrival,
+                            duration,
+                            price,
+                            seats,
+                          })
+                        )
+                      }
+                      variant='contained'
+                      color='success'
+                    >
+                      select
+                    </Button>
+                  </Link>
+                  <Typography variant='h6'>
+                    Seats {seats.length} /
+                    {seats.filter((item) => item.available).length}
+                  </Typography>
                 </Box>
               </Stack>
             </Box>

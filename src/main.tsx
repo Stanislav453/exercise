@@ -6,14 +6,17 @@ import theme from './theme.tsx';
 import { Provider } from 'react-redux';
 import { store } from './Redux/store.tsx';
 import { CssBaseline } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </React.StrictMode>
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <React.StrictMode>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </React.StrictMode>
+    </Provider>
+  </BrowserRouter>
 );
