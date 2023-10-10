@@ -1,3 +1,13 @@
+export type orderTicketType = {
+  from: string;
+  to: string;
+  price: string;
+  departure: string;
+  arrival: string;
+  duration: string;
+  seats: [];
+};
+
 export type flightDataType = {
   id: number;
   from: string;
@@ -7,4 +17,10 @@ export type flightDataType = {
   duration: string;
   price: number;
   seats: [];
+};
+
+export type seatsType = {
+  id: number;
+  number: string;
+  available: boolean;
 };

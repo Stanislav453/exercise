@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { addOrderTicketData } from '../../Redux/slices/orderSlice';
 import { Link } from 'react-router-dom';
-
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 export const Ticket = () => {
   const dispatch = useDispatch();
 
@@ -18,6 +18,9 @@ export const Ticket = () => {
 
   return (
     <Container maxWidth={'md'} sx={{ pt: 5 }}>
+      <Box>
+        <LocationOnIcon />
+      </Box>
       <Typography
         variant='h3'
         sx={{ fontWeight: 900, textTransform: 'uppercase' }}
