@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack, Button } from '@mui/material';
 import { PASSANGER, SEAT } from '../../stringVariables';
 import { TextField } from '@mui/material';
 import { FormStyle } from './style/FormStyle';
@@ -13,13 +13,15 @@ type formType = {
 };
 
 type PassengerInfotype = {
-  item: string
-  key: number
-}
+  item: string;
+  key: number;
+};
 
 export const PassengerInfo = ({ item, index }: PassengerInfotype) => {
   const [modal, setModal] = useState(false);
   const passengerNumber = index + 1;
+  const [name, setName] = useState([{}]);
+
 
   const maxStringLetter = 12;
   const maxNumber = 14;
@@ -50,17 +52,9 @@ export const PassengerInfo = ({ item, index }: PassengerInfotype) => {
       date: Yup.date().required(dateRequired),
     }),
     onSubmit: (values) => {
-      if (
-        formik.values.name &&
-        formik.values.secondName &&
-        formik.values.date
-      ) {
-        setModal((state) => !state);
-      }
+      console.log(values)
     },
   });
-
-  console.log(formik.values.name)
 
   //CLEAR_FORM_INPUT
   const formSubmit = () => {
@@ -69,6 +63,8 @@ export const PassengerInfo = ({ item, index }: PassengerInfotype) => {
     formik.values.date = '';
     setModal(false);
   };
+
+  console.log( formik.value )
 
   return (
     <FormStyle onSubmit={formik.handleSubmit}>
@@ -123,6 +119,15 @@ export const PassengerInfo = ({ item, index }: PassengerInfotype) => {
             onChange={formik.handleChange}
           />
         </Box>
+        {/* <Button
+          sx={{ alignSelf: 'center' }}
+          type='submit'
+          // onClick={() => setName((state) => {formik.values.name})}
+          // onClick={formik.handleSubmit}
+          variant='contained'
+        >
+          Slect data
+        </Button> */}
       </Stack>
     </FormStyle>
   );

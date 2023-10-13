@@ -25,3 +25,5 @@ export const MODAL_ORDER_ERROR_MESSAGE = 'You not select free seat';
 export const CLOSE = 'close';
 export const PASSANGER = 'passanger';
 export const SEAT = 'seat'
+export const DEPARTURE = 'departure'
+export const ARRIVAL = 'arrival'

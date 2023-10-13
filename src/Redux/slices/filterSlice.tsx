@@ -16,60 +16,39 @@ export const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    searchByName: (state, action) => {
-      const filterData = state.filterData.filter((data) => {
-        return data.from.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        filterData: action.payload.length > 0 ? filterData : [...state.data],
-      };
-    },
-    searchByTo: (state, action) => {
-      const filterData = state.filterData.filter((data) => {
-        return data.to.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        filterData: action.payload.length > 0 ? filterData : [...state.data],
-      };
-    },
-    searchByDeparture: (state, action) => {
-      const filterData = state.filterData.filter((data) => {
-        return data.departure
+    searchByValue: (state, action) => {
+      const dataForFilter = [...state.data];
+      const filterData = dataForFilter.filter((data) => {
+        const filterDataFrom = data.from
           .toLowerCase()
-          .includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        filterData: action.payload.length > 0 ? filterData : [...state.data],
-      };
-    },
-    searchByArrival: (state, action) => {
-      const filterData = state.filterData.filter((data) => {
-        return data.arrival
+          .includes(action.payload.from.toLowerCase());
+        const filterDataTo = data.to
           .toLowerCase()
-          .includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        filterData: action.payload.length > 0 ? filterData : [...state.data],
-      };
-    },
-    persconCount: (state, action) => {
-      const filterData = state.filterData.filter((data) => {
+          .includes(action.payload.to.toLowerCase());
+        const filterDataDeparture = data.departure.includes(
+          action.payload.departure
+        );
+        const filterDataArrival = data.arrival.includes(action.payload.arrival);
+        const filterDataSeats = data.seats.filter( (item) => item.available.lentgth >= action.payload.seats )
+        // const filterDataSeatsTrue = data.seats.filter( (value) => (value === true).length >= action.payload.seats )
+        // const filterDataSeats = filterDataSeatsTrue.length >= action.payload.seats
         return (
-       data.seats.filter((item) => item.available).length >= action.payload
+          filterDataFrom &&
+          filterDataTo &&
+          filterDataDeparture &&
+          filterDataArrival &&
+          filterDataSeats
+          // filterDataSeats
         );
       });
       return {
         ...state,
-        filterData: action.payload > 0 ? filterData : [...state.data],
+        filterData: filterData,
       };
     },
   },
 });
 
-export const { searchByName, searchByTo, persconCount } = filterSlice.actions;
+export const { searchByValue } = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -29,7 +29,7 @@
       { "id": 3, "number": "B1", "available": true },
       { "id": 4, "number": "B2", "available": true }
     ]
-  },
+  }, 
   {
     "id": 3,
     "from": "Paris",

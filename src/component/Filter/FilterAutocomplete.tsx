@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Autocomplete from '@mui/material/Autocomplete';
-import { searchByName, searchByTo } from '../../Redux/slices/filterSlice';
+import { searchByValue } from '../../Redux/slices/filterSlice';
 import { flightDataType } from '../../type';
 import TextField from '@mui/material/TextField';
 import { arrival } from '../../stringVariables';
 import { departure } from '../../stringVariables';
+import { useEffect, useState } from 'react';
 
-export const FilterAutocomplete = () => {
+export const FilterAutocomplete = ({ setInputData }: any) => {
+  const dispatch = useDispatch();
+
   const data = useSelector(
     (state: flightDataType) => state.flyTicketFilter.data
   );
@@ -19,15 +22,20 @@ export const FilterAutocomplete = () => {
     ...new Set(data.map((item: flightDataType) => item.to)),
   ];
 
-  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(searchByValue({ from: inputValue, to: '' }));
+  //   dispatch(searchByValue({ from: '', to: secondInputValue }));
+  // }, [inputValue, secondInputValue]);
 
   return (
     <>
       <Autocomplete
         sx={{ flex: 1 }}
         freeSolo
-        onInputChange={(e: any, newValue: string | null) =>
-          dispatch(searchByName(newValue))
+        onInputChange={(e: any, newValue: any) =>
+          setInputData((state) => {
+            return { ...state, from: newValue };
+          })
         }
         options={departureRender}
         renderInput={(params) => <TextField {...params} label={departure} />}
@@ -36,8 +44,10 @@ export const FilterAutocomplete = () => {
         sx={{ flex: 1 }}
         freeSolo
         disableClearable
-        onInputChange={(e: any, newValue: string | null) =>
-          dispatch(searchByTo(newValue))
+        onInputChange={(e: any, newValue: any) =>
+          setInputData((state) => {
+            return { ...state, to: newValue };
+          })
         }
         options={arrivalRender}
         renderInput={(params) => (

@@ -6,20 +6,17 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { PERSON } from '../../stringVariables';
 import { useSelector, useDispatch } from 'react-redux';
-import { persconCount } from '../../Redux/slices/filterSlice';
 
-export const FilterPersonCount = () => {
-  const [age, setAge] = React.useState('');
+export const FilterPersonCount = ({ setInputData, inputData }: any) => {
+  const { person } = inputData;
 
   const dispatch = useDispatch();
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+  const handleChange = (e: SelectChangeEvent) => {
+    setInputData((state) => {
+      return { ...state, person: e.target.value };
+    });
   };
-
-  useEffect( () => {
-    dispatch(persconCount(age))
-  },[age])
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -28,7 +25,7 @@ export const FilterPersonCount = () => {
         <Select
           labelId='demo-simple-select-label'
           id='demo-simple-select'
-          value={age}
+          value={person}
           label={PERSON}
           onChange={handleChange}
         >

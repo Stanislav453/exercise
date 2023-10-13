@@ -1,9 +1,12 @@
-import { Stack, Typography, Box } from '@mui/material';
+import { Stack, Typography, Box, Button } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { PassengerInfo } from './PassengerInfo';
 
 export const PersonInfo = () => {
+
+    // const [ name, setName ] = useState([])
+
   const seatsPosition = useSelector(
     (state) => state.orderTicketData.selectedSeats
   );
@@ -32,7 +35,9 @@ export const PersonInfo = () => {
       </Typography>
       <Box>{seatsPosition.map( (item,index) => {
        return <PassengerInfo item={item} index={index} />;
-      } )}</Box>
+      } )}
+        <Button>add data</Button>
+      </Box>
     </Stack>
   );
 };
