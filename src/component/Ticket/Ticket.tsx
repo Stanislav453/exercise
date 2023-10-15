@@ -2,13 +2,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import { flightDataType } from '../../type';
 import { Button, Stack, Typography } from '@mui/material';
-import { our_flights } from '../../stringVariables';
+import {
+  ARRIVAL,
+  DEPARTURE,
+  DURATION,
+  FILTER_ERROR,
+  SEATS,
+  SELECTS,
+  our_flights,
+} from '../../stringVariables';
 import img from './img/fly-img.webp';
 import Box from '@mui/material/Box';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { addOrderTicketData } from '../../Redux/slices/orderSlice';
 import { Link } from 'react-router-dom';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 export const Ticket = () => {
   const dispatch = useDispatch();
 
@@ -18,9 +25,6 @@ export const Ticket = () => {
 
   return (
     <Container maxWidth={'md'} sx={{ pt: 5 }}>
-      <Box>
-        <LocationOnIcon />
-      </Box>
       <Typography
         variant='h3'
         sx={{ fontWeight: 900, textTransform: 'uppercase' }}
@@ -30,7 +34,7 @@ export const Ticket = () => {
       </Typography>
       {filteredData.length === 0 ? (
         <Typography variant='h4' color={'error'}>
-          No flights available
+          {FILTER_ERROR}
         </Typography>
       ) : (
         filteredData.map((item: flightDataType, key: number) => {
@@ -57,11 +61,20 @@ export const Ticket = () => {
                   {from} <ArrowRightAltIcon /> {to}
                 </Typography>
                 <Box>
-                  <Typography variant='subtitle1'>
-                    Departure: {departure}
+                  <Typography
+                    variant='subtitle1'
+                    sx={{ textTransform: 'capitalize' }}
+                  >
+                    {`${DEPARTURE}: ${departure}`}
                   </Typography>
-                  <Typography variant='subtitle1'>{`Arival: ${arrival}`}</Typography>
-                  <Typography variant='subtitle1'>{`Duration: ${duration}`}</Typography>
+                  <Typography
+                    variant='subtitle1'
+                    sx={{ textTransform: 'capitalize' }}
+                  >{`${ARRIVAL}: ${arrival}`}</Typography>
+                  <Typography
+                    variant='subtitle1'
+                    sx={{ textTransform: 'capitalize' }}
+                  >{`${DURATION}: ${duration}`}</Typography>
                 </Box>
                 <Box pr={1}>
                   <Typography
@@ -87,12 +100,12 @@ export const Ticket = () => {
                       variant='contained'
                       color='success'
                     >
-                      select
+                      {SELECTS}
                     </Button>
                   </Link>
-                  <Typography variant='h6'>
-                    Seats {seats.length} /
-                    {seats.filter((item) => item.available).length}
+                  <Typography variant='h6' sx={{ textTransform:'capitalize' }}>
+                   {` ${SEATS} ${seats.length} /
+                    ${seats.filter((item) => item.available).length}`}
                   </Typography>
                 </Box>
               </Stack>

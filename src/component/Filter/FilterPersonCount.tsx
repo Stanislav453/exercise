@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { PERSON } from '../../stringVariables';
-import { useSelector, useDispatch } from 'react-redux';
+import {  SEATS } from '../../stringVariables';
 
-export const FilterPersonCount = ({ setInputData, inputData }: any) => {
-  const { person } = inputData;
+export const FilterPersonCount = ({ setInputData }) => {
 
-  const dispatch = useDispatch();
 
   const handleChange = (e: SelectChangeEvent) => {
     setInputData((state) => {
@@ -21,12 +17,10 @@ export const FilterPersonCount = ({ setInputData, inputData }: any) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id='demo-simple-select-label'>{PERSON}</InputLabel>
+        <InputLabel sx={{ textTransform:'capitalize' }} >{SEATS}</InputLabel>
         <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={person}
-          label={PERSON}
+
+          label={ SEATS }
           onChange={handleChange}
         >
           <MenuItem value={1}>1</MenuItem>

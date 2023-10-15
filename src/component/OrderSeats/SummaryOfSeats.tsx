@@ -1,6 +1,6 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   BACK,
   ORDER,
@@ -11,21 +11,23 @@ import {
 } from '../../stringVariables';
 import { Link } from 'react-router-dom';
 import { ModalSeats } from './ModalSeats';
+import { addSeatsPrice } from '../../Redux/slices/orderSlice';
 
 export const SummaryOfSeats = () => {
   const [isSeatSelected, setIsSelected] = useState<boolean>(false);
 
+  const dispatch = useDispatch()
+
+
   const ticketPrice = useSelector(
-    (state: number | null) => state.orderTicketData.orderTicket.price
+    (state) => state.orderTicketData.orderTicket.price
   );
 
-  const freeSeats = useSelector(
-    (state: any) => state.orderTicketData.orderTicket.seats
-  );
 
   const seatsCount = useSelector(
-    (state: number) => state.orderTicketData.seatsCount
+    (state) => state.orderTicketData.seatsCount
   );
+
 
   const resultPrice = ticketPrice * seatsCount;
 
@@ -60,7 +62,9 @@ export const SummaryOfSeats = () => {
         >
           <Button
             onClick={() => {
-              seatsCount === 0 ? setIsSelected(true) : setIsSelected(false);
+              seatsCount === 0 ? setIsSelected(true) : setIsSelected(false),
+                dispatch(addSeatsPrice(resultPrice));
+                
             }}
             type='button'
             variant='contained'

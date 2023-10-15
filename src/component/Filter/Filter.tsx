@@ -1,12 +1,11 @@
 import Stack from '@mui/material/Stack';
 import { Container, Box } from '@mui/material';
 import { FilterAutocomplete } from './FilterAutocomplete';
-import { FilterButton } from './FilterButton';
 import { useEffect, useState } from 'react';
 import { FilterSelectState } from './FilterSelectDate';
 import { FilterPersonCount } from './FilterPersonCount';
 import { searchByValue } from '../../Redux/slices/filterSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -38,7 +37,6 @@ export const Filter = () => {
 
   ]);
 
-  // const someData = useSelector((state) => state.flyTicketFilter.fi );
 
   return (
     <Container
@@ -55,7 +53,6 @@ export const Filter = () => {
         <Box flex={4} sx={{ display: 'flex', gap: 2 }}>
           <FilterAutocomplete setInputData={setInputData} />
         </Box>
-        {/* <FilterDaTePicker /> */}
         <Box flex={2}>
           <FilterSelectState setInputData={setInputData} />
         </Box>
@@ -65,7 +62,6 @@ export const Filter = () => {
             inputData={inputData}
           />
         </Box>
-        <FilterButton inputData={inputData} />
       </Stack>
     </Container>
   );

@@ -1,11 +1,18 @@
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { Stack, Typography, Box } from '@mui/material';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import {
+  ARRIVAL,
+  DEPARTURE,
+  DURATION,
+  FREE_SEATS,
+  PRICE,
+} from '../stringVariables';
 
 export const OrderTicketHead = () => {
   const order = useSelector((state) => state.orderTicketData.orderTicket);
 
-  const { from, to, price, departure, arrival, duration, seats } = order;
+  const { from, to, price, departure, arrival, duration } = order;
 
   return (
     <Stack
@@ -22,15 +29,12 @@ export const OrderTicketHead = () => {
         {from} <ArrowRightAltIcon /> {to}
       </Typography>
       <Box>
-        <Typography variant='subtitle1'> departure: {departure} </Typography>
-        <Typography variant='subtitle1'> arrival: {arrival} </Typography>
-        <Typography variant='subtitle1'> duration: {duration} </Typography>
+        <Typography variant='subtitle1' sx={{ textTransform:'capitalize' }}>{` ${DEPARTURE}: ${departure} `}</Typography>
+        <Typography variant='subtitle1' sx={{ textTransform:'capitalize' }}>{` ${ARRIVAL}: ${arrival} `}</Typography>
+        <Typography variant='subtitle1' sx={{ textTransform:'capitalize' }}>{` ${DURATION}: ${duration} `}</Typography>
       </Box>
       <Box>
-        <Typography variant='subtitle1'> price: ${price} </Typography>
-        <Typography variant='subtitle1'>
-          Vacant seats: {seats.length}
-        </Typography>
+        <Typography variant='subtitle1' sx={{ textTransform:'capitalize' }}>{` ${PRICE}: $${price} `}</Typography>
       </Box>
     </Stack>
   );

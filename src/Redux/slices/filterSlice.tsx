@@ -29,16 +29,15 @@ export const filterSlice = createSlice({
           action.payload.departure
         );
         const filterDataArrival = data.arrival.includes(action.payload.arrival);
-        const filterDataSeats = data.seats.filter( (item) => item.available.lentgth >= action.payload.seats )
-        // const filterDataSeatsTrue = data.seats.filter( (value) => (value === true).length >= action.payload.seats )
-        // const filterDataSeats = filterDataSeatsTrue.length >= action.payload.seats
+        const filterDataSeats = data.seats.filter((item) => item.available ).length >= action.payload.seats
+
+        
         return (
           filterDataFrom &&
           filterDataTo &&
           filterDataDeparture &&
           filterDataArrival &&
           filterDataSeats
-          // filterDataSeats
         );
       });
       return {

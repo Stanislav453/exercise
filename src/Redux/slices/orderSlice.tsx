@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { orderTicketType } from '../../type';
-
-interface CounterState {
-  orderTicket: orderTicketType[];
-  seatsCount: number | null;
-  selectedSeats: string[] | null;
-}
+import { CounterState } from '../../type';
 
 export const initialState: CounterState = {
   orderTicket: [
@@ -21,6 +15,7 @@ export const initialState: CounterState = {
   ],
   seatsCount: 0,
   selectedSeats: [],
+  seatsPrice: 0,
 };
 
 export const orderSlice = createSlice({
@@ -49,10 +44,18 @@ export const orderSlice = createSlice({
     actualSelectedSeats: (state, action) => {
       state.selectedSeats = action.payload;
     },
+
+    addSeatsPrice: ( state, action ) => {
+      state.seatsPrice = action.payload;
+    }
   },
 });
 
-export const { addOrderTicketData, actualSeatsCount, actualSelectedSeats } =
-  orderSlice.actions;
+export const {
+  addOrderTicketData,
+  actualSeatsCount,
+  actualSelectedSeats,
+  addSeatsPrice,
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

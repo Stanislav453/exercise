@@ -1,12 +1,12 @@
-import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { CLOSE, ERROR, MODAL_ORDER_ERROR_MESSAGE } from '../../stringVariables';
 
-type mudalSeatsType = {
-  isSeatSelected: any;
+type modalSeatsType = {
+  isSeatSelected: boolean;
   setIsSelected: () => void
 };
 
@@ -22,9 +22,9 @@ const style = {
   p: 4,
 };
 
-export const ModalSeats = ({ setIsSelected, isSeatSelected }: mudalSeatsType) => {
+export const ModalSeats = ({ setIsSelected, isSeatSelected }: modalSeatsType) => {
     
-  const handleClose = () => setIsSelected((state: boolean) => !state);
+  const handleClose = () => setIsSelected((state:boolean) => !state);
 
   return (
       <Modal

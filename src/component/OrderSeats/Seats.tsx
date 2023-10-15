@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { flightDataType, seatsType } from '../../type';
 import { Stack, Button } from '@mui/material';

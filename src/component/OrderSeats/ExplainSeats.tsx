@@ -1,4 +1,3 @@
-import React from 'react';
 import { Stack, Button } from '@mui/material';
 import {
   RESERVED_SEAT,

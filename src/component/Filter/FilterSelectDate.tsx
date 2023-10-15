@@ -1,15 +1,12 @@
-import * as React from 'react';
 import { Stack } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { ARRIVAL, DEPARTURE } from '../../stringVariables';
 
 export const FilterSelectState = ({ setInputData, inputData }: any) => {
-  const [age, setAge] = React.useState('');
-
   const dateDeparture = useSelector(
     (state) => state.flyTicketFilter.filterData
   );
@@ -17,16 +14,14 @@ export const FilterSelectState = ({ setInputData, inputData }: any) => {
   return (
     <Stack direction='row' spacing={2}>
       <FormControl fullWidth>
-        <InputLabel id='demo-simple-select-label'>{DEPARTURE}</InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          //   value={age}
-          label={DEPARTURE}
-        >
-          {dateDeparture.map((item, key) => {
+        <InputLabel sx={{ textTransform: 'capitalize' }}>
+          {DEPARTURE}
+        </InputLabel>
+        <Select label={DEPARTURE}>
+          {dateDeparture.map((item: string, key: number) => {
             return (
               <MenuItem
+                key={key}
                 value={item}
                 onClick={() => {
                   setInputData((state) => {
@@ -38,20 +33,12 @@ export const FilterSelectState = ({ setInputData, inputData }: any) => {
               </MenuItem>
             );
           })}
-          {/* <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
       </FormControl>
       <FormControl fullWidth>
-        <InputLabel id='demo-simple-select-label'>{ARRIVAL}</InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          // value={person}
-          label={ARRIVAL}
-        >
-          {dateDeparture.map((item, key) => {
+        <InputLabel sx={{ textTransform: 'capitalize' }}>{ARRIVAL}</InputLabel>
+        <Select label={ARRIVAL}>
+          {dateDeparture.map((item: string) => {
             return (
               <MenuItem
                 value={item}
@@ -65,9 +52,6 @@ export const FilterSelectState = ({ setInputData, inputData }: any) => {
               </MenuItem>
             );
           })}
-          {/* <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
       </FormControl>
     </Stack>

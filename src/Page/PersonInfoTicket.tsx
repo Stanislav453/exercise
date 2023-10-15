@@ -1,5 +1,4 @@
 import { Container } from '@mui/material'
-import React from 'react'
 import { OrderTicketHead } from '../component/OrderTicketHead'
 import { PersonInfo } from '../component/Form/PersonInfo'
 

@@ -17,10 +17,16 @@ export type flightDataType = {
   duration: string;
   price: number;
   seats: [];
-};
+} 
 
 export type seatsType = {
   id: number;
   number: string;
   available: boolean;
 };
+
+export type CounterState = {
+  orderTicket: orderTicketType[];
+  seatsCount: number | null;
+  selectedSeats: string[] | null;
+  seatsPrice: number }

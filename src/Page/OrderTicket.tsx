@@ -4,24 +4,18 @@ import { OrderSeats } from '../component/OrderSeats/OrderSeats';
 import { HOME, MARK_YOUR_SEATS, NO_SEATS } from '../stringVariables';
 import { SummaryOfSeats } from '../component/OrderSeats/SummaryOfSeats';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { orderTicketType } from '../type';
 import { Link } from 'react-router-dom';
 
 export const OrderTicket = () => {
-  const order = useSelector(
-    (state: orderTicketType) => state.orderTicketData.orderTicket
-  );
 
   const freeSeats = useSelector(
     (state) => state.orderTicketData.orderTicket.seats
   );
 
 
-  const isFreeSeats = freeSeats.some( item => item.available  )
+  const isFreeSeats = freeSeats.some( (item) => item.available  )
 
-  console.log(isFreeSeats)
 
-  if (order) {
     return (
       <Container maxWidth='md'>
         <OrderTicketHead />
@@ -56,7 +50,5 @@ export const OrderTicket = () => {
         )}
       </Container>
     );
-  } else {
-    return <div>nejde to</div>;
-  }
+
 };
